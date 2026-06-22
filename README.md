@@ -105,7 +105,6 @@ Diabetes-Prediction-ML/
 ├── Diabetes_Prediction.ipynb
 ├── diabetes.csv
 ├── README.md
-└── requirements.txt
 ```
 
 ---

@@ -1,0 +1,10 @@
+```text
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+shap
+joblib
+jupyter
+```

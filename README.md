@@ -1,149 +1,95 @@
-# Diabetes Prediction Using Machine Learning
+# DiabetesAI — Explainable Diabetes Risk Assessment
 
-## Overview
+An end-to-end machine learning project for **diabetes risk assessment**, upgraded from a basic SVM notebook into a reproducible and explainable ML pipeline.
 
-This project uses Machine Learning to predict whether a person is diabetic based on various health-related features such as glucose level, blood pressure, BMI, age, and insulin level. The model is built using Python and Scikit-Learn and trained on the Pima Indians Diabetes Dataset.
+> **Responsible-use notice:** This is an educational machine-learning project, not a medical diagnostic system. It has not been clinically validated and should not be used to diagnose, treat, or replace professional medical care.
 
----
+## What This Version Adds
+
+- Data-quality audit and handling of physiologically implausible zero values
+- Leakage-safe preprocessing with scikit-learn pipelines
+- Stratified 5-fold cross-validation
+- Comparison of Logistic Regression, Linear SVM, RBF SVM, Random Forest, and Gradient Boosting
+- Random Forest hyperparameter tuning with GridSearchCV
+- Evaluation using Accuracy, Precision, Recall/Sensitivity, F1, ROC-AUC, confusion matrix, and Brier score
+- Probability calibration for a model-estimated risk score
+- Global feature importance
+- Optional SHAP explainability for individual/model behavior
+- Interactive what-if scenario helper
+- Reusable patient risk-assessment function
+- Model serialization with Joblib for future deployment
 
 ## Dataset
 
-The dataset contains 768 patient records with 8 medical attributes and 1 target variable.
+The project uses the Pima Indians Diabetes Dataset containing 768 observations, eight input features, and the binary `Outcome` target.
 
-### Features
+Features:
+- Pregnancies
+- Glucose
+- BloodPressure
+- SkinThickness
+- Insulin
+- BMI
+- DiabetesPedigreeFunction
+- Age
 
-* Pregnancies
-* Glucose
-* Blood Pressure
-* Skin Thickness
-* Insulin
-* BMI
-* Diabetes Pedigree Function
-* Age
+Target:
+- `0` → Non-Diabetic
+- `1` → Diabetic
 
-### Target Variable
-
-* 0 → Non-Diabetic
-* 1 → Diabetic
-
----
-
-## Technologies Used
-
-* Python
-* NumPy
-* Pandas
-* Scikit-Learn
-* Google Colab
-* Jupyter Notebook
-
----
-
-## Machine Learning Algorithm
-
-The project uses the **Support Vector Machine (SVM)** algorithm with a **Linear Kernel** for classification.
-
-```python
-classifier = svm.SVC(kernel='linear')
-```
-
----
+Some zero values in Glucose, BloodPressure, SkinThickness, Insulin, and BMI are treated as potentially missing measurements during preprocessing. The transformation is kept inside the ML pipeline to avoid data leakage.
 
 ## Project Workflow
 
-1. Import required libraries.
-2. Load and analyze the diabetes dataset.
-3. Perform exploratory data analysis.
-4. Separate features and target labels.
-5. Standardize data using StandardScaler.
-6. Split data into training and testing sets.
-7. Train the SVM model.
-8. Evaluate model performance using accuracy score.
-9. Build a predictive system for new patient data.
+**Patient data → Data validation → Data-quality audit → Invalid/missing-value handling → EDA → Stratified train/test split → Leakage-safe preprocessing → Model comparison with cross-validation → Hyperparameter tuning → Final test evaluation → Probability calibration → Explainability → Risk assessment → What-if analysis → Model export → Future Streamlit/API deployment**
 
----
+## Notebook
 
-## Model Performance
+The main notebook is:
 
-### Training Accuracy
+`DiabetesAI_Risk_Assessment.ipynb`
 
-```text
-78.66%
+It is designed to run in Google Colab or Jupyter Notebook.
+
+## Technologies
+
+Python, Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn, SHAP, Joblib, Jupyter/Google Colab
+
+## Running Locally
+
+```bash
+git clone https://github.com/Faseeh555/Diabetes-Prediction-ML.git
+cd Diabetes-Prediction-ML
+pip install numpy pandas scikit-learn matplotlib seaborn shap joblib
 ```
 
-### Testing Accuracy
-
-```text
-77.27%
-```
-
-The model demonstrates good performance in predicting diabetes on unseen data.
-
----
-
-## Sample Prediction
-
-Input:
-
-```text
-(10,115,0,0,0,35.3,0.134,29)
-```
-
-Output:
-
-```text
-The person is diabetic.
-```
-
----
+Open `DiabetesAI_Risk_Assessment.ipynb` and run the cells sequentially.
 
 ## Repository Structure
 
 ```text
 Diabetes-Prediction-ML/
-│
-├── Diabetes_Prediction.ipynb
+├── DiabetesAI_Risk_Assessment.ipynb
 ├── diabetes.csv
 ├── README.md
+└── .gitignore
 ```
 
----
+## Limitations
 
-## How to Run
+- The dataset is relatively small and represents a specific population, so generalization to other populations is uncertain.
+- Historical measurements contain potentially missing values encoded as zero.
+- The model is not clinically validated.
+- A model-estimated probability is not the same as a clinically validated individual risk percentage.
+- Before real-world medical use, the system would require external validation, subgroup/fairness analysis, prospective evaluation, security review, monitoring, and appropriate clinical/regulatory review.
 
-1. Clone the repository.
+## Planned Product Layer
 
-```bash
-git clone https://github.com/Faseeh555/Diabetes-Prediction-ML.git
-```
-
-2. Install dependencies.
-
-```bash
-pip install numpy pandas scikit-learn
-```
-
-3. Open the notebook in Jupyter Notebook or Google Colab.
-
-4. Run all cells sequentially.
-
----
-
-## Future Improvements
-
-* Compare multiple machine learning algorithms.
-* Perform feature engineering.
-* Improve model accuracy through hyperparameter tuning.
-* Deploy the model as a web application using Flask or Streamlit.
-
----
+The next stage is a hackathon-ready **DiabetesAI** application with a Streamlit dashboard, patient input form, calibrated risk estimate, SHAP explanation, what-if simulator, educational health guidance, and a carefully constrained AI health assistant.
 
 ## Author
 
-**Faseeh ur Rehman Anjum**
-
-BS Computer Science Student
-
-National University of Modern Languages (NUML)
+**Faseeh ur Rehman Anjum**  
+BS Computer Science — National University of Modern Languages (NUML)
 
 GitHub: https://github.com/Faseeh555

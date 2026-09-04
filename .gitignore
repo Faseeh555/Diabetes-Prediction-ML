@@ -2,19 +2,33 @@
 __pycache__/
 *.py[cod]
 *.pyo
-.venv/
+
+# Virtual environments
 venv/
-ENV/
+env/
+.venv/
+
+# Environment variables
+.env
+.env.*
+!.env.example
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Generated ML artifacts
-*.pkl
-*.joblib
+# Secrets
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.json
+service-account.json
+secrets.json
 
-# OS / editor
+# API keys
+secrets/
+config.local.*
+
+# Model/cache files
+*.log
 .DS_Store
-Thumbs.db
-.vscode/
-.idea/
